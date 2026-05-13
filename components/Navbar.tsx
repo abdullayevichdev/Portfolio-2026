@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Rocket } from 'lucide-react';
+import { Menu, X, Sparkles } from 'lucide-react';
+import logo from '../assets/logo.jpg';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +17,7 @@ const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'Xizmatlar', href: '#services' },
     { name: 'Loyihalar', href: '#projects' },
+    { name: 'Sertifikatlar', href: '#certificates' },
     { name: 'Botlar', href: '#bots' },
     { name: 'Men Haqimda', href: '#about' },
     { name: 'Ko\'nikmalar', href: '#skills' },
@@ -53,10 +55,22 @@ const Navbar: React.FC = () => {
         <a 
           href="#" 
           onClick={handleLogoClick}
-          className="flex items-center gap-2 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 hover:opacity-80 transition-opacity cursor-pointer"
+          className="group flex items-center gap-3 transition-all cursor-pointer"
         >
-          <Rocket className="text-blue-500" />
-          <span>AVAZXANOV</span>
+          <div className="relative">
+            <div className="absolute -inset-1 bg-gradient-to-r from-sky-500 to-pink-500 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
+            <div className="relative flex items-center justify-center w-10 h-10 rounded-lg overflow-hidden bg-white shadow-xl transition-transform group-hover:scale-110 duration-300">
+              <img src={logo} alt="Abdulhay Logo" className="w-full h-full object-cover" />
+            </div>
+          </div>
+          <div className="flex flex-col leading-tight">
+            <span className="text-xl font-black tracking-tighter text-slate-900 group-hover:text-sky-500 transition-colors">
+              Abdulhay<span className="text-sky-500">.</span>dev
+            </span>
+            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-slate-400">
+              Frontend Engineer
+            </span>
+          </div>
         </a>
 
         {/* Desktop Menu */}
@@ -66,7 +80,7 @@ const Navbar: React.FC = () => {
               key={link.name}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-gray-300 hover:text-white transition-colors text-sm font-medium tracking-wide uppercase hover:underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer select-none"
+              className="text-slate-600 hover:text-sky-500 transition-colors text-sm font-medium tracking-wide uppercase hover:underline decoration-sky-500 decoration-2 underline-offset-8 cursor-pointer select-none"
             >
               {link.name}
             </a>
@@ -75,7 +89,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors cursor-pointer"
+          className="md:hidden text-slate-800 p-2 hover:bg-slate-200/50 rounded-lg transition-colors cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -90,7 +104,7 @@ const Navbar: React.FC = () => {
               key={link.name}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-gray-300 hover:text-white text-lg font-medium py-2 border-b border-white/5 last:border-0 cursor-pointer"
+              className="text-slate-600 hover:text-sky-500 text-lg font-medium py-2 border-b border-slate-200 last:border-0 cursor-pointer"
             >
               {link.name}
             </a>

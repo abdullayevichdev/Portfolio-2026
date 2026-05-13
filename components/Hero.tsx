@@ -1,7 +1,8 @@
 import React from 'react';
-import { ArrowRight, ChevronDown, Rocket, Sparkles, Instagram, Send, MessageCircle } from 'lucide-react';
+import { ArrowRight, ChevronDown, Rocket, Sparkles, Instagram, Send, MessageCircle, Github, Code, Download, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { FadeUp, TextReveal } from './Animations';
+import { FadeUp } from './Animations';
+import IAM from '../assets/IAM.jpg';
 
 const Hero: React.FC = () => {
   const scrollToContact = () => {
@@ -12,150 +13,150 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-10 lg:pb-0">
-      {/* Dynamic Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
-        <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-purple-600/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-32 left-1/2 w-[600px] h-[600px] bg-cyan-600/10 rounded-full mix-blend-screen filter blur-[120px] animate-blob animation-delay-4000"></div>
-      </div>
-
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-16 lg:pt-32">
       <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        {/* Left Column */}
         <div className="text-left relative z-10 pt-10 lg:pt-0">
           <FadeUp delay={0.1}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-xs font-bold tracking-widest text-cyan-400 uppercase bg-cyan-950/30 rounded-full border border-cyan-500/30 backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 text-xs font-bold tracking-widest text-sky-600 uppercase bg-sky-100/50 rounded-full border border-sky-300/50 backdrop-blur-md">
               <Sparkles size={14} />
-              <span>Future Web Engineering</span>
+              <span>Frontend Developer</span>
             </div>
           </FadeUp>
           
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight">
+          <h1 className="text-5xl md:text-[5rem] font-extrabold mb-8 leading-[1.1] tracking-tight text-slate-900">
             <FadeUp delay={0.2}><span className="block mb-2">Salom, men</span></FadeUp>
-            <TextReveal 
-              delay={0.4} 
-              className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 text-glow pb-2 pr-2"
-            >
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-purple-500 to-pink-500 pb-2 pr-2">
               Abdulhay Avazxanov
-            </TextReveal>
+            </span>
           </h1>
           
           <FadeUp delay={0.6}>
-            <p className="text-blue-100/80 text-lg md:text-xl mb-10 leading-relaxed max-w-lg border-l-2 border-blue-500/50 pl-6">
-              Media, IT, Robototexnika va Veb-muhandislik sohalarida 3 yillik tajriba. Men oddiy g'oyalarni <span className="text-white font-semibold">premium raqamli reallikka</span> aylantiraman.
+            <p className="text-slate-500 text-lg md:text-xl mb-12 leading-relaxed max-w-xl">
+              Zamonaviy va interaktiv foydalanuvchi interfeyslarini yaratuvchi <span className="text-slate-800 font-bold">Veb-Muhandisman</span>. 
+              G'oyalarni raqamli reallikka aylantirish — mening asosiy maqsadim.
             </p>
           </FadeUp>
           
           <FadeUp delay={0.8}>
-            <div className="flex flex-col sm:flex-row gap-5">
+            <div className="flex flex-wrap gap-5 mb-16">
               <motion.a 
                 href="#projects" 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative px-8 py-4 bg-blue-600 hover:bg-blue-500 rounded-xl text-white font-bold transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] flex items-center justify-center gap-3 overflow-hidden"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-8 py-4 bg-gradient-to-r from-sky-400 to-pink-400 rounded-2xl text-white font-bold transition-all shadow-lg shadow-sky-400/25 flex items-center justify-center gap-3"
               >
-                <span className="relative z-10">Loyihalarimni ko'rish</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-                <ArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform" size={20} />
+                Loyihalarimni ko'rish <ArrowRight size={20} />
               </motion.a>
               <motion.button 
                 onClick={scrollToContact}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white/5 border border-white/10 rounded-xl text-white font-semibold hover:bg-white/10 transition-all text-center backdrop-blur-sm hover:border-white/20 cursor-pointer"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-8 py-4 bg-white/60 border border-slate-200 rounded-2xl text-slate-800 font-bold hover:bg-white transition-all shadow-sm backdrop-blur-md"
               >
                 Bog'lanish
               </motion.button>
             </div>
           </FadeUp>
+
+          {/* Social Links */}
+          <FadeUp delay={1}>
+            <div className="flex items-center gap-6">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Follow Me</span>
+              <div className="flex gap-4">
+                {[
+                  { icon: <Instagram size={20} />, href: "https://instagram.com/avazxanov_701" },
+                  { icon: <Send size={20} />, href: "https://t.me/Abdullayevich_dev" },
+                  { icon: <MessageCircle size={20} />, href: "https://t.me/frontenddevuz" },
+                  { icon: <Github size={20} />, href: "https://github.com/abdullayevichdev" }
+                ].map((social, i) => (
+                  <motion.a 
+                    key={i}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -3, color: '#0ea5e9' }}
+                    className="w-11 h-11 rounded-full glass-card flex items-center justify-center text-slate-400 transition-colors border border-white/60"
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+          </FadeUp>
         </div>
 
+        {/* Right Column - Redesigned Image Frame */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          initial={{ opacity: 0, scale: 0.9, x: 50 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative mt-12 lg:mt-0"
+          className="relative flex justify-center lg:justify-center lg:-translate-x-20 px-4 sm:px-0"
         >
-          <div className="relative w-full aspect-[4/5] max-w-md mx-auto perspective-1000">
-             {/* Glowing backdrops */}
-             <div className="absolute -inset-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-[2rem] opacity-30 blur-2xl animate-pulse-slow"></div>
+          <div className="relative w-full aspect-[4/5] max-w-[320px] sm:max-w-[400px] lg:max-w-[500px]">
+             {/* Complex Background Glow */}
+             <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-tr from-sky-400/20 via-purple-500/20 to-pink-500/20 rounded-full blur-[60px] sm:blur-[80px] opacity-60 animate-pulse-slow"></div>
              
-             {/* Main Card */}
-             <div className="relative h-full w-full glass-card rounded-[2rem] overflow-hidden border border-white/20 p-3 group transform transition-transform duration-500 hover:scale-[1.02] hover:-rotate-1">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900/90 z-10"></div>
+             {/* Main Image Frame */}
+             <div className="relative h-full w-full rounded-[2.5rem] sm:rounded-[3.5rem] overflow-hidden border-4 sm:border-8 border-white/40 shadow-2xl bg-white/20 backdrop-blur-md">
                 <img 
-                  src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop" 
-                  alt="Tech Abstract" 
-                  className="w-full h-full object-cover rounded-[1.5rem] opacity-90 group-hover:scale-110 transition-transform duration-700"
+                  src={IAM} 
+                  alt="Abdulhay Avazxanov" 
+                  className="w-full h-full object-cover transform transition-transform duration-1000 hover:scale-105"
                 />
                 
-                {/* Social Badges Container - Animated */}
-                <div className="absolute top-6 left-6 md:top-8 md:left-8 z-20 flex flex-col gap-3">
-                     
-                     <motion.a 
-                       initial={{ x: -50, opacity: 0 }}
-                       animate={{ x: 0, opacity: 1 }}
-                       transition={{ delay: 1 }}
-                       href="https://instagram.com/avazxanov_701" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       className="glass-card pl-2 pr-4 py-2 rounded-full border border-white/10 flex items-center gap-2 hover:bg-white/10 transition-all hover:scale-105 cursor-pointer group/insta shadow-lg w-fit"
-                     >
-                        <div className="bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 p-1.5 rounded-full shadow-md">
-                           <Instagram size={14} className="text-white" />
+                {/* Overlay Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent"></div>
+
+                {/* Floating Role Badge (Bottom) */}
+                <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 z-20">
+                    <div className="glass-card p-4 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] border border-white/80 shadow-2xl flex items-center justify-between">
+                        <div>
+                             <p className="text-[8px] sm:text-[10px] font-bold text-sky-500 uppercase tracking-widest mb-0.5 sm:mb-1">Current Role</p>
+                             <p className="font-extrabold text-slate-800 text-sm sm:text-xl leading-tight">Frontend Developer</p>
                         </div>
-                        <span className="text-xs font-bold text-white tracking-wide group-hover/insta:text-pink-300 transition-colors">avazxanov_701</span>
-                     </motion.a>
-
-                     <motion.a 
-                       initial={{ x: -50, opacity: 0 }}
-                       animate={{ x: 0, opacity: 1 }}
-                       transition={{ delay: 1.2 }}
-                       href="https://t.me/Abdullayevich_design" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       className="glass-card pl-2 pr-4 py-2 rounded-full border border-white/10 flex items-center gap-2 hover:bg-white/10 transition-all hover:scale-105 cursor-pointer group/tg shadow-lg w-fit"
-                     >
-                        <div className="bg-gradient-to-tr from-blue-400 to-blue-600 p-1.5 rounded-full shadow-md">
-                           <Send size={14} className="text-white" />
-                        </div>
-                        <span className="text-xs font-bold text-white tracking-wide group-hover/tg:text-blue-300 transition-colors">Abdullayevich</span>
-                     </motion.a>
-
-                     <motion.a 
-                       initial={{ x: -50, opacity: 0 }}
-                       animate={{ x: 0, opacity: 1 }}
-                       transition={{ delay: 1.4 }}
-                       href="https://t.me/Robotexnika_LSL" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       className="glass-card pl-2 pr-4 py-2 rounded-full border border-white/10 flex items-center gap-2 hover:bg-white/10 transition-all hover:scale-105 cursor-pointer group/ch shadow-lg w-fit"
-                     >
-                        <div className="bg-gradient-to-tr from-cyan-400 to-teal-500 p-1.5 rounded-full shadow-md">
-                           <MessageCircle size={14} className="text-white" />
-                        </div>
-                        <span className="text-xs font-bold text-white tracking-wide group-hover/ch:text-teal-300 transition-colors">Robotexnika_LSL</span>
-                     </motion.a>
-
-                </div>
-
-                <div className="absolute top-6 right-6 md:top-8 md:right-8 z-20 glass-card p-3 rounded-2xl border border-white/10">
-                    <Rocket className="text-blue-400" size={24} />
-                </div>
-
-                <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 z-20">
-                    <div className="glass-card p-5 rounded-2xl border border-white/10 backdrop-blur-xl">
-                        <div className="flex justify-between items-center mb-2">
-                             <span className="text-xs font-mono text-cyan-400">SYSTEM STATUS</span>
-                             <span className="flex h-2 w-2 relative">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                             </span>
-                        </div>
-                        <p className="font-bold text-white text-lg">Open to Work</p>
-                        <p className="text-sm text-gray-400">Available for Freelance & Projects</p>
+                        <motion.a 
+                            href={IAM}
+                            download="Abdulhay_Avazxanov.jpg"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="p-2 sm:p-3 bg-sky-500 rounded-xl sm:rounded-2xl text-white shadow-lg shadow-sky-500/30 cursor-pointer"
+                            title="Rasm yuklab olish"
+                        >
+                            <Download size={18} className="sm:w-5 sm:h-5" />
+                        </motion.a>
                     </div>
                 </div>
              </div>
+
+             {/* Floating Dynamic Cards - Adjusted for Mobile */}
+             <motion.div 
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 1 }}
+                className="absolute top-1/4 -left-6 sm:-left-12 z-30 glass-card pl-3 pr-4 sm:pl-4 sm:pr-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-3 shadow-xl border border-white/60"
+             >
+                <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500 shadow-[0_0_12px_rgba(34,197,94,0.6)] animate-pulse"></div>
+                <div className="flex flex-col">
+                    <span className="text-[10px] sm:text-xs font-bold text-slate-800">Available</span>
+                    <span className="text-[8px] sm:text-[9px] text-slate-500">for Projects</span>
+                </div>
+             </motion.div>
+
+             <motion.div 
+                initial={{ x: 20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 1.3 }}
+                className="absolute top-1/2 -right-4 sm:-right-8 z-30 bg-slate-900/80 backdrop-blur-xl pl-3 pr-4 sm:pl-4 sm:pr-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-3 shadow-xl border border-white/10"
+             >
+                <div className="p-1.5 sm:p-2 bg-sky-500/20 rounded-lg sm:rounded-xl">
+                    <Code size={16} className="text-sky-400 sm:w-5 sm:h-5" />
+                </div>
+                <div className="flex flex-col">
+                    <span className="text-[10px] sm:text-xs font-bold text-white">3+ Years</span>
+                    <span className="text-[8px] sm:text-[9px] text-slate-400">Experience</span>
+                </div>
+             </motion.div>
           </div>
         </motion.div>
       </div>
@@ -165,7 +166,7 @@ const Hero: React.FC = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2, duration: 1, repeat: Infinity, repeatType: "reverse" }}
-        className="hidden lg:block absolute bottom-8 left-1/2 -translate-x-1/2 text-white/30 hover:text-white transition-colors cursor-pointer z-20"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-400 hover:text-sky-500 transition-colors cursor-pointer z-20"
       >
         <ChevronDown size={32} />
       </motion.a>

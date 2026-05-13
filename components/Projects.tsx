@@ -4,6 +4,18 @@ import { Project } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FadeUp, StaggerContainer, StaggerItem, TiltCard } from './Animations';
 
+import fortexImg from '../assets/Fortex Oil Corporate.jpg';
+import portfolioImg from '../assets/Mening Birinchi Portfoliom.png';
+import phoneMarketImg from "../assets/Telefon va Aksessuarlar Do'koni.jpeg";
+import wearMarketImg from '../assets/Oline Wear Market.png';
+import carsSalonImg from '../assets/Onlayn Avtosalon.jpg';
+import schoolSysImg from '../assets/School management system.png';
+import notepadImg from '../assets/Notepad Pro Web App.jpg';
+import tahqiqImg from '../assets/Tahqiq Platform.jpeg';
+import iqubImg from '../assets/Iqub Qurilish Sanoati uchun maxsus platforma.jpg';
+import qulupnayImg from '../assets/Qulupnay.uz Shrinliklar tayyorlaydigan korhona uchun platforma.jpg';
+import freelanceImg from '../assets/Freelance & Freelancer.png';
+
 const projects: Project[] = [
   {
     id: 8,
@@ -11,8 +23,7 @@ const projects: Project[] = [
     url: 'https://fortex-oil-sayt.vercel.app/',
     category: 'Biznes',
     status: 'live',
-    // Rasm yangilandi: Neft/Gaz sanoati mavzusidagi ishonchliroq rasm
-    image: 'https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?q=80&w=800&auto=format&fit=crop',
+    image: fortexImg,
     description: 'Neft va gaz sanoati uchun ishlab chiqilgan zamonaviy va informativ korporativ veb-sayt.',
     tech: ['React', 'Tailwind', 'Animation']
   },
@@ -22,7 +33,7 @@ const projects: Project[] = [
     url: 'https://abdullayevichdev.github.io/Portfolio/',
     category: 'Shaxsiy',
     status: 'live',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+    image: portfolioImg,
     description: 'HTML va CSS yordamida yaratilgan ilk shaxsiy veb-sayt. Oddiy, ammo samarali dizayn.',
     tech: ['HTML', 'CSS']
   },
@@ -32,7 +43,7 @@ const projects: Project[] = [
     url: 'https://abdullayevichdev.github.io/Abdulhay-Online-Market/',
     category: 'E-Commerce',
     status: 'live',
-    image: 'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&q=80&w=800', 
+    image: phoneMarketImg, 
     description: 'Mobil qurilmalar va aksessuarlar sotuvi uchun moslashuvchan interfeysga ega onlayn do\'kon.',
     tech: ['JS', 'Bootstrap', 'E-com']
   },
@@ -42,7 +53,7 @@ const projects: Project[] = [
     url: 'https://abdullayevichdev.github.io/Wear-Market-new/',
     category: 'E-Commerce',
     status: 'live',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800',
+    image: wearMarketImg,
     description: 'Zamonaviy kiyim-kechaklar uchun minimalist dizayndagi onlayn savdo platformasi.',
     tech: ['React', 'Tailwind', 'UI/UX']
   },
@@ -52,7 +63,7 @@ const projects: Project[] = [
     url: 'https://cars-salon-7cib.vercel.app/', 
     category: 'Biznes',
     status: 'live', 
-    image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=800',
+    image: carsSalonImg,
     description: 'Premium avtomobillar savdosi va ijarasi uchun mo\'ljallangan boshqaruv paneli va vitrina.',
     tech: ['Vercel', 'React', 'Dashboard']
   },
@@ -63,7 +74,7 @@ const projects: Project[] = [
     url: 'https://students-grades.vercel.app/',
     category: 'Ta\'lim',
     status: 'live',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
+    image: schoolSysImg,
     description: 'O\'quvchilar davomati, baholar va jadvallarni nazorat qilish uchun maxsus CRM tizimi.',
     tech: ['CRM', 'Analytics', 'Admin']
   },
@@ -83,9 +94,49 @@ const projects: Project[] = [
     url: 'https://abdullayevichdev.github.io/Notepad_Pro/',
     category: 'Tools',
     status: 'live',
-    image: 'https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&q=80&w=800',
+    image: notepadImg,
     description: 'Brauzerda ishlovchi, ma\'lumotlarni local storage da saqlovchi tezkor qaydlar ilovasi.',
     tech: ['JavaScript', 'LocalStorage', 'PWA']
+  },
+  {
+    id: 9,
+    title: 'Tahqiq Platform',
+    url: 'https://tahqiqofficial.vercel.app/',
+    category: 'Platforma',
+    status: 'live',
+    image: tahqiqImg,
+    description: 'Zamonaviy tadqiqotlar va professional faoliyat uchun maxsus ishlab chiqilgan platforma.',
+    tech: ['React', 'Tailwind', 'i18next']
+  },
+  {
+    id: 10,
+    title: 'Iqub Qurilish',
+    url: 'https://iqub-eosin.vercel.app/',
+    category: 'Biznes',
+    status: 'live',
+    image: iqubImg,
+    description: 'Qurilish sanoati korxonalari uchun maxsus veb platforma.',
+    tech: ['React', 'Tailwind', 'UI/UX']
+  },
+  {
+    id: 11,
+    title: 'Qulupnay.uz',
+    url: 'https://qulupnay-uz.vercel.app/',
+    category: 'E-Commerce',
+    status: 'live',
+    image: qulupnayImg,
+    description: 'Shirinliklar tayyorlaydigan korxona uchun onlayn buyurtma platformasi.',
+    tech: ['React', 'E-Commerce', 'Vercel']
+  },
+  {
+    id: 12,
+    title: 'Freelance & Freelancer',
+    url: 'https://work-time-three.vercel.app/',
+    category: 'Platforma',
+    status: 'live',
+    image: freelanceImg,
+    description: 'Frilanserlar va mijozlarni bog\'lovchi professional ishlash platformasi.',
+    tech: ['React', 'Dashboard', 'Firebase']
   }
 ];
 
@@ -108,15 +159,14 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="py-24 bg-slate-900 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-slate-900 to-slate-900 pointer-events-none"></div>
+    <section id="projects" className="py-24 relative z-10">
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <FadeUp>
-            <span className="text-emerald-400 font-mono text-sm tracking-widest uppercase mb-2 block">Portfolio</span>
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Mening Loyihalarim</h2>
-            <div className="h-1 w-24 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full"></div>
+            <span className="text-sky-500 font-mono text-sm tracking-widest uppercase mb-2 block">Portfolio</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-800">Mening Loyihalarim</h2>
+            <div className="h-1 w-24 bg-gradient-to-r from-sky-400 to-pink-400 mx-auto rounded-full"></div>
           </FadeUp>
         </div>
 
@@ -125,8 +175,10 @@ const Projects: React.FC = () => {
             <StaggerItem key={project.id} className="h-full">
               <TiltCard className="h-full">
                 <div
-                  className="group glass-card rounded-2xl overflow-hidden hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] hover:border-emerald-500/30 transition-all duration-500 flex flex-col h-full"
+                  className="group glass-card rounded-[2rem] overflow-hidden hover:shadow-[0_20px_50px_rgba(56,189,248,0.2)] hover:border-sky-400/50 hover:-translate-y-2 transition-all duration-500 flex flex-col h-full relative"
                 >
+                  {/* Liquid Hover Blob */}
+                  <div className="absolute -inset-full bg-gradient-to-tr from-sky-500/30 to-pink-500/30 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none group-hover:animate-blob"></div>
                   <div className="relative h-52 overflow-hidden">
                     <a 
                       href={project.url} 
@@ -142,28 +194,28 @@ const Projects: React.FC = () => {
                             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20">
-                            <span className="bg-black/50 backdrop-blur px-4 py-2 rounded-full text-white font-medium border border-white/20 flex items-center gap-2">
+                            <span className="bg-white/50 backdrop-blur px-4 py-2 rounded-full text-slate-800 font-medium border border-white/80 flex items-center gap-2 shadow-lg">
                                 <Eye size={16} /> Ko'rish
                             </span>
                         </div>
                     </a>
 
-                    <div className="absolute top-4 right-4 z-20 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium border border-white/10 text-white pointer-events-none">
+                    <div className="absolute top-4 right-4 z-20 bg-white/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium border border-white/50 text-slate-800 pointer-events-none shadow-sm">
                       {project.category}
                     </div>
                   </div>
 
                   <div className="p-6 flex flex-col flex-grow relative">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                    <h3 className="text-xl font-bold text-slate-800 mb-2 group-hover:text-sky-600 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                    <p className="text-slate-500 text-sm mb-4 line-clamp-2">
                       {project.description}
                     </p>
 
                     <div className="flex flex-wrap gap-2 mb-6">
                         {project.tech?.map((t, i) => (
-                            <span key={i} className="text-[10px] uppercase text-emerald-300 bg-emerald-900/30 px-2 py-1 rounded border border-emerald-500/20">{t}</span>
+                            <span key={i} className="text-[10px] uppercase text-sky-600 bg-sky-100/50 px-2 py-1 rounded border border-sky-300/50">{t}</span>
                         ))}
                     </div>
                     
@@ -173,13 +225,13 @@ const Projects: React.FC = () => {
                         target={brokenProjectIds.includes(project.id) ? undefined : "_blank"}
                         rel="noopener noreferrer"
                         onClick={(e) => handleProjectClick(e, project)}
-                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 rounded-lg text-white font-bold transition-all shadow-lg hover:shadow-emerald-500/30 transform hover:-translate-y-1 cursor-pointer"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-sky-500 to-pink-500 hover:opacity-90 rounded-lg text-white font-bold transition-all shadow-lg shadow-sky-500/20 transform hover:-translate-y-1 cursor-pointer"
                       >
                         Saytni Ochish <ExternalLink size={16} />
                       </a>
                       <button
                             onClick={(e) => handleDetailsClick(e, project)}
-                            className="px-3 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-white transition-all cursor-pointer"
+                            className="px-3 py-3 bg-white/40 hover:bg-white/60 border border-white/60 rounded-lg text-slate-800 transition-all cursor-pointer shadow-sm"
                             title="Batafsil ma'lumot"
                           >
                             <MonitorPlay size={20} />
@@ -209,29 +261,29 @@ const Projects: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-2xl bg-slate-900 border border-white/10 rounded-2xl overflow-hidden shadow-2xl z-10 flex flex-col max-h-[90vh]"
+              className="relative w-full max-w-2xl glass-card rounded-[2rem] overflow-hidden shadow-2xl z-10 flex flex-col max-h-[90vh]"
             >
               <div className="relative h-64 shrink-0">
                  <img src={selectedDetails.image} className="w-full h-full object-cover" alt="Preview" />
-                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                 <div className="absolute inset-0 bg-gradient-to-t from-white/90 to-transparent"></div>
               </div>
 
               <div className="p-8 overflow-y-auto">
-                 <h3 className="text-2xl font-bold text-white mb-4">{selectedDetails.title}</h3>
+                 <h3 className="text-2xl font-bold text-slate-800 mb-4">{selectedDetails.title}</h3>
                  
-                 <h4 className="text-white font-semibold mb-2">Loyiha Haqida:</h4>
-                 <p className="text-gray-400 leading-relaxed mb-6">
+                 <h4 className="text-slate-800 font-semibold mb-2">Loyiha Haqida:</h4>
+                 <p className="text-slate-500 leading-relaxed mb-6">
                     {selectedDetails.description}
                  </p>
                  
                  <div className="flex gap-2 mb-8">
                     {selectedDetails.tech?.map((t, i) => (
-                        <span key={i} className="text-xs font-mono bg-white/5 px-2 py-1 rounded text-gray-300 border border-white/10">{t}</span>
+                        <span key={i} className="text-xs font-mono bg-sky-100/50 px-2 py-1 rounded text-sky-700 border border-sky-200">{t}</span>
                     ))}
                  </div>
 
                  <div className="flex justify-end gap-3">
-                    <button onClick={() => setSelectedDetails(null)} className="px-5 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-medium transition-colors">
+                    <button onClick={() => setSelectedDetails(null)} className="px-5 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-800 font-medium transition-colors">
                         Yopish
                     </button>
                  </div>

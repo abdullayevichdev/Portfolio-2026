@@ -13,27 +13,27 @@ const skills: Skill[] = [
 
 const Skills: React.FC = () => {
   return (
-    <section id="skills" className="py-24 relative overflow-hidden">
-        <div className="absolute right-0 bottom-0 w-1/2 h-full bg-gradient-to-l from-blue-900/10 to-transparent pointer-events-none"></div>
-      <div className="container mx-auto px-6 relative z-10">
-        <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center">Abdulhayning Ko'nikmalari</h2>
+    <section id="skills" className="py-24 relative z-10">
+      <div className="container mx-auto px-6 relative z-10 max-w-6xl">
+        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center text-slate-800 tracking-wide">
+          Abdulhayning Ko'nikmalari
+        </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
           {skills.map((skill, index) => (
             <div key={skill.name} className="group">
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
-                   {skill.icon && <skill.icon className="text-blue-400 group-hover:text-purple-400 transition-colors" size={20} />}
-                   <span className="text-lg font-medium text-white">{skill.name}</span>
+                   {skill.icon && <skill.icon className="text-sky-500 group-hover:text-pink-500 transition-colors" size={20} />}
+                   <span className="text-lg font-bold text-slate-800 tracking-wide">{skill.name}</span>
                 </div>
-                <span className="text-gray-400 font-mono text-sm">
-                    {/* Only show percentage if specifically requested in design, usually hidden in premium designs, but explicit in prompt for some */}
+                <span className="text-slate-500 font-mono text-sm tracking-wider">
                     {skill.name.includes('HTML') ? '40%' : skill.name.includes('JavaScript') ? '30%' : 'Expert'}
                 </span>
               </div>
-              <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+              <div className="h-1.5 w-full bg-slate-200/50 rounded-full overflow-hidden shadow-inner">
                 <div 
-                    className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full relative overflow-hidden"
+                    className="h-full bg-gradient-to-r from-sky-400 via-purple-300 to-pink-400 rounded-full relative overflow-hidden transition-all duration-1000 ease-out"
                     style={{ width: `${skill.level}%` }}
                 >
                     <div className="absolute inset-0 bg-white/30 animate-[shimmer_2s_infinite] transform -skew-x-12"></div>
@@ -41,28 +41,28 @@ const Skills: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
 
-          {/* Additional Skill Cards for Graphic Design */}
-          <div className="md:col-span-2 mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-             <div className="glass-card p-6 rounded-xl border border-white/10 flex items-center gap-4 hover:bg-white/5 transition-colors">
-                <div className="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400">
-                    <Palette size={24} />
-                </div>
-                <div>
-                    <h4 className="font-bold text-white">Adobe Photoshop & Canva</h4>
-                    <p className="text-sm text-gray-400">Grafik Dizayn, Logolar, Bannerlar</p>
-                </div>
-             </div>
-             <div className="glass-card p-6 rounded-xl border border-white/10 flex items-center gap-4 hover:bg-white/5 transition-colors">
-                <div className="w-12 h-12 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400">
-                    <Database size={24} />
-                </div>
-                <div>
-                    <h4 className="font-bold text-white">Backend & Automation</h4>
-                    <p className="text-sm text-gray-400">Python, Telegram Bot API</p>
-                </div>
-             </div>
-          </div>
+        {/* Additional Skill Cards for Graphic Design */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+           <div className="glass-card p-6 rounded-2xl flex items-center gap-5 group cursor-default">
+              <div className="w-14 h-14 rounded-full bg-pink-100/50 border border-pink-200 flex items-center justify-center text-pink-500 group-hover:scale-110 group-hover:bg-pink-200/50 transition-all">
+                  <Palette size={24} />
+              </div>
+              <div>
+                  <h4 className="font-bold text-slate-800 text-lg tracking-wide mb-1">Adobe Photoshop & Canva</h4>
+                  <p className="text-sm text-slate-500">Grafik Dizayn, Logolar, Bannerlar</p>
+              </div>
+           </div>
+           <div className="glass-card p-6 rounded-2xl flex items-center gap-5 group cursor-default">
+              <div className="w-14 h-14 rounded-full bg-sky-100/50 border border-sky-200 flex items-center justify-center text-sky-500 group-hover:scale-110 group-hover:bg-sky-200/50 transition-all">
+                  <Database size={24} />
+              </div>
+              <div>
+                  <h4 className="font-bold text-slate-800 text-lg tracking-wide mb-1">Backend & Automation</h4>
+                  <p className="text-sm text-slate-500">Python, Telegram Bot API</p>
+              </div>
+           </div>
         </div>
       </div>
     </section>

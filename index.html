@@ -48,13 +48,15 @@
       }
       
       body {
-        background-color: #0f172a;
-        color: #ffffff;
+        /* Base light color with a tint */
+        background-color: #f0f9ff;
+        color: #0f172a;
         overflow-x: hidden;
         position: relative;
+        min-height: 100vh;
       }
 
-      /* Noise Texture Overlay */
+      /* Dynamic Liquid Background Elements */
       body::before {
         content: "";
         position: fixed;
@@ -62,43 +64,66 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
         pointer-events: none;
         z-index: 9999;
-        opacity: 0.4;
       }
+
+      /* Liquid Orbs in Background */
+      .bg-orb-1, .bg-orb-2, .bg-orb-3 {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(100px);
+        z-index: -1;
+        opacity: 0.5;
+        animation: blob 15s infinite alternate;
+      }
+      .bg-orb-1 { top: 10%; left: 10%; width: 50vw; height: 50vw; background: rgba(56, 189, 248, 0.5); }
+      .bg-orb-2 { bottom: 10%; right: 10%; width: 40vw; height: 40vw; background: rgba(244, 114, 182, 0.4); animation-delay: -5s; }
+      .bg-orb-3 { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60vw; height: 40vw; background: rgba(232, 121, 249, 0.3); animation-delay: -10s; }
       
       /* Custom Scrollbar for Premium Feel */
       ::-webkit-scrollbar {
-        width: 10px;
+        width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #0f172a; 
+        background: #f0f9ff; 
       }
       ::-webkit-scrollbar-thumb {
-        background: #334155; 
-        border-radius: 5px;
+        background: rgba(15, 23, 42, 0.1); 
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #475569; 
+        background: rgba(15, 23, 42, 0.3); 
       }
 
+      /* Core Liquid Glass Class for Light Theme */
       .glass-card {
-        background: rgba(17, 25, 40, 0.7);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        border-right: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .glass-card:hover {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 100%);
+        box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.5);
       }
       
       .glass-nav {
-        background: rgba(15, 23, 42, 0.8); 
-        backdrop-filter: blur(16px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.3); 
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
       }
       
       .text-glow {
-        text-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
       }
       
       .perspective-1000 {
