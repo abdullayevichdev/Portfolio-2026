@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations/translations';
 import logo from '../assets/logo.jpg';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { language, setLanguage } = useLanguage();
+  const t = translations[language].nav;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,23 +19,22 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Xizmatlar', href: '#services' },
-    { name: 'Loyihalar', href: '#projects' },
-    { name: 'Sertifikatlar', href: '#certificates' },
-    { name: 'Botlar', href: '#bots' },
-    { name: 'Men Haqimda', href: '#about' },
-    { name: 'Ko\'nikmalar', href: '#skills' },
-    { name: 'Bog\'lanish', href: '#contact' },
+    { name: t.services, href: '#services' },
+    { name: t.projects, href: '#projects' },
+    { name: t.certificates, href: '#certificates' },
+    { name: t.bots, href: '#bots' },
+    { name: t.about, href: '#about' },
+    { name: t.skills, href: '#skills' },
+    { name: t.contact, href: '#contact' },
   ];
 
-  // Maxsus silliq o'tish funksiyasi (Linklar ishlashini kafolatlaydi)
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault(); // Oddiy sakrashni to'xtatib, o'zimiz boshqaramiz
+    e.preventDefault();
     const targetId = href.replace('#', '');
     const elem = document.getElementById(targetId);
     
     if (elem) {
-      const headerOffset = 100; // Navbar balandligini hisobga olamiz
+      const headerOffset = 100;
       const elementPosition = elem.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
@@ -40,13 +43,13 @@ const Navbar: React.FC = () => {
         behavior: 'smooth'
       });
       
-      setIsOpen(false); // Mobil menyuni yopish
+      setIsOpen(false);
     }
   };
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -68,43 +71,101 @@ const Navbar: React.FC = () => {
               Abdulhay<span className="text-sky-500">.</span>dev
             </span>
             <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-slate-400">
-              Frontend Engineer
+              {t.role}
             </span>
           </div>
         </a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="text-slate-600 hover:text-sky-500 transition-colors text-sm font-medium tracking-wide uppercase hover:underline decoration-sky-500 decoration-2 underline-offset-8 cursor-pointer select-none"
+        <div className="hidden lg:flex items-center gap-7">
+          <div className="flex gap-7">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="text-slate-600 hover:text-sky-500 transition-colors text-sm font-medium tracking-wide uppercase hover:underline decoration-sky-500 decoration-2 underline-offset-8 cursor-pointer select-none"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+
+          {/* Desktop Language Switcher */}
+          <div className="flex items-center bg-white/70 border border-slate-200/80 rounded-full p-1 shadow-sm backdrop-blur-md">
+            <button
+              type="button"
+              onClick={() => setLanguage('uz')}
+              className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                language === 'uz'
+                  ? 'bg-gradient-to-r from-sky-500 to-indigo-500 text-white shadow-md'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
             >
-              {link.name}
-            </a>
-          ))}
+              <span>🇺🇿</span>
+              <span>UZ</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setLanguage('en')}
+              className={`px-3 py-1 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                language === 'en'
+                  ? 'bg-gradient-to-r from-sky-500 to-indigo-500 text-white shadow-md'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <span>🇬🇧</span>
+              <span>EN</span>
+            </button>
+          </div>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-slate-800 p-2 hover:bg-slate-200/50 rounded-lg transition-colors cursor-pointer"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* Mobile Actions: Language Switcher + Hamburger */}
+        <div className="flex lg:hidden items-center gap-3">
+          <div className="flex items-center bg-white/70 border border-slate-200/80 rounded-full p-0.5 shadow-sm backdrop-blur-md">
+            <button
+              type="button"
+              onClick={() => setLanguage('uz')}
+              className={`px-2 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
+                language === 'uz'
+                  ? 'bg-gradient-to-r from-sky-500 to-indigo-500 text-white shadow-sm'
+                  : 'text-slate-600'
+              }`}
+            >
+              UZ
+            </button>
+            <button
+              type="button"
+              onClick={() => setLanguage('en')}
+              className={`px-2 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
+                language === 'en'
+                  ? 'bg-gradient-to-r from-sky-500 to-indigo-500 text-white shadow-sm'
+                  : 'text-slate-600'
+              }`}
+            >
+              EN
+            </button>
+          </div>
+
+          <button
+            className="text-slate-800 p-2 hover:bg-slate-200/50 rounded-lg transition-colors cursor-pointer"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="md:hidden glass-nav absolute w-full left-0 top-full p-6 flex flex-col gap-4 border-t border-gray-800 animate-in slide-in-from-top-5 duration-200 shadow-2xl">
+        <div className="lg:hidden glass-nav absolute w-full left-0 top-full p-6 flex flex-col gap-4 border-t border-slate-200 animate-in slide-in-from-top-5 duration-200 shadow-2xl">
           {navLinks.map((link) => (
             <a
-              key={link.name}
+              key={link.href}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-slate-600 hover:text-sky-500 text-lg font-medium py-2 border-b border-slate-200 last:border-0 cursor-pointer"
+              className="text-slate-700 hover:text-sky-500 text-lg font-medium py-2 border-b border-slate-200/60 last:border-0 cursor-pointer"
             >
               {link.name}
             </a>

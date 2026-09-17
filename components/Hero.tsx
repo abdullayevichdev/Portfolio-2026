@@ -1,10 +1,15 @@
 import React from 'react';
-import { ArrowRight, ChevronDown, Rocket, Sparkles, Instagram, Send, MessageCircle, Github, Code, Download, Zap } from 'lucide-react';
+import { ArrowRight, ChevronDown, Sparkles, Instagram, Send, MessageCircle, Github, Code, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations/translations';
 import { FadeUp } from './Animations';
 import IAM from '../assets/IAM.jpg';
 
 const Hero: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language].hero;
+
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
@@ -20,21 +25,20 @@ const Hero: React.FC = () => {
           <FadeUp delay={0.1}>
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 text-xs font-bold tracking-widest text-sky-600 uppercase bg-sky-100/50 rounded-full border border-sky-300/50 backdrop-blur-md">
               <Sparkles size={14} />
-              <span>Frontend Developer</span>
+              <span>{t.badge}</span>
             </div>
           </FadeUp>
           
           <h1 className="text-5xl md:text-[5rem] font-extrabold mb-8 leading-[1.1] tracking-tight text-slate-900">
-            <FadeUp delay={0.2}><span className="block mb-2">Salom, men</span></FadeUp>
+            <FadeUp delay={0.2}><span className="block mb-2">{t.greeting}</span></FadeUp>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-purple-500 to-pink-500 pb-2 pr-2">
-              Abdulhay Avazxanov
+              {t.name}
             </span>
           </h1>
           
           <FadeUp delay={0.6}>
             <p className="text-slate-500 text-lg md:text-xl mb-12 leading-relaxed max-w-xl">
-              Zamonaviy va interaktiv foydalanuvchi interfeyslarini yaratuvchi <span className="text-slate-800 font-bold">Veb-Muhandisman</span>. 
-              G'oyalarni raqamli reallikka aylantirish — mening asosiy maqsadim.
+              {t.descriptionPre}<span className="text-slate-800 font-bold">{t.descriptionHighlight}</span>{t.descriptionPost}
             </p>
           </FadeUp>
           
@@ -44,17 +48,17 @@ const Hero: React.FC = () => {
                 href="#projects" 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 bg-gradient-to-r from-sky-400 to-pink-400 rounded-2xl text-white font-bold transition-all shadow-lg shadow-sky-400/25 flex items-center justify-center gap-3"
+                className="px-8 py-4 bg-gradient-to-r from-sky-400 to-pink-400 rounded-2xl text-white font-bold transition-all shadow-lg shadow-sky-400/25 flex items-center justify-center gap-3 cursor-pointer"
               >
-                Loyihalarimni ko'rish <ArrowRight size={20} />
+                {t.viewProjects} <ArrowRight size={20} />
               </motion.a>
               <motion.button 
                 onClick={scrollToContact}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 bg-white/60 border border-slate-200 rounded-2xl text-slate-800 font-bold hover:bg-white transition-all shadow-sm backdrop-blur-md"
+                className="px-8 py-4 bg-white/60 border border-slate-200 rounded-2xl text-slate-800 font-bold hover:bg-white transition-all shadow-sm backdrop-blur-md cursor-pointer"
               >
-                Bog'lanish
+                {t.contactBtn}
               </motion.button>
             </div>
           </FadeUp>
@@ -62,7 +66,7 @@ const Hero: React.FC = () => {
           {/* Social Links */}
           <FadeUp delay={1}>
             <div className="flex items-center gap-6">
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Follow Me</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">{t.followMe}</span>
               <div className="flex gap-4">
                 {[
                   { icon: <Instagram size={20} />, href: "https://instagram.com/avazxanov_701" },
@@ -112,8 +116,8 @@ const Hero: React.FC = () => {
                 <div className="absolute bottom-4 sm:bottom-8 left-4 sm:left-8 right-4 sm:right-8 z-20">
                     <div className="glass-card p-4 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] border border-white/80 shadow-2xl flex items-center justify-between">
                         <div>
-                             <p className="text-[8px] sm:text-[10px] font-bold text-sky-500 uppercase tracking-widest mb-0.5 sm:mb-1">Current Role</p>
-                             <p className="font-extrabold text-slate-800 text-sm sm:text-xl leading-tight">Frontend Developer</p>
+                             <p className="text-[8px] sm:text-[10px] font-bold text-sky-500 uppercase tracking-widest mb-0.5 sm:mb-1">{t.currentRole}</p>
+                             <p className="font-extrabold text-slate-800 text-sm sm:text-xl leading-tight">{t.roleTitle}</p>
                         </div>
                         <motion.a 
                             href={IAM}
@@ -121,7 +125,7 @@ const Hero: React.FC = () => {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="p-2 sm:p-3 bg-sky-500 rounded-xl sm:rounded-2xl text-white shadow-lg shadow-sky-500/30 cursor-pointer"
-                            title="Rasm yuklab olish"
+                            title={t.downloadPhoto}
                         >
                             <Download size={18} className="sm:w-5 sm:h-5" />
                         </motion.a>
@@ -138,8 +142,8 @@ const Hero: React.FC = () => {
              >
                 <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500 shadow-[0_0_12px_rgba(34,197,94,0.6)] animate-pulse"></div>
                 <div className="flex flex-col">
-                    <span className="text-[10px] sm:text-xs font-bold text-slate-800">Available</span>
-                    <span className="text-[8px] sm:text-[9px] text-slate-500">for Projects</span>
+                    <span className="text-[10px] sm:text-xs font-bold text-slate-800">{t.availableBadge}</span>
+                    <span className="text-[8px] sm:text-[9px] text-slate-500">{t.forProjects}</span>
                 </div>
              </motion.div>
 
@@ -153,8 +157,8 @@ const Hero: React.FC = () => {
                     <Code size={16} className="text-sky-400 sm:w-5 sm:h-5" />
                 </div>
                 <div className="flex flex-col">
-                    <span className="text-[10px] sm:text-xs font-bold text-white">3+ Years</span>
-                    <span className="text-[8px] sm:text-[9px] text-slate-400">Experience</span>
+                    <span className="text-[10px] sm:text-xs font-bold text-white">{t.expNumber}</span>
+                    <span className="text-[8px] sm:text-[9px] text-slate-400">{t.expText}</span>
                 </div>
              </motion.div>
           </div>

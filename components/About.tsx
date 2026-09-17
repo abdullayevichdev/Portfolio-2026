@@ -1,10 +1,14 @@
 import React from 'react';
-import { User, BookOpen, Cpu, Sparkles, GraduationCap, MapPin } from 'lucide-react';
+import { Cpu, Sparkles, GraduationCap, MapPin, Code2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations/translations';
 import { FadeUp } from './Animations';
-import IAM from '../assets/IAM.jpg';
 
 const About: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language].about;
+
   return (
     <section id="about" className="py-32 relative overflow-hidden">
       {/* Background Decorative Element */}
@@ -49,8 +53,8 @@ const About: React.FC = () => {
                         <GraduationCap className="text-sky-500" size={18} />
                     </div>
                     <div>
-                        <p className="text-[8px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-0.5">Education</p>
-                        <p className="text-xs sm:text-base font-bold text-slate-800">LSL School</p>
+                        <p className="text-[8px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-0.5">{t.eduLabel}</p>
+                        <p className="text-xs sm:text-base font-bold text-slate-800">{t.eduValue}</p>
                     </div>
                 </motion.div>
 
@@ -64,8 +68,8 @@ const About: React.FC = () => {
                         <MapPin className="text-pink-500" size={18} />
                     </div>
                     <div>
-                        <p className="text-[8px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-0.5">Location</p>
-                        <p className="text-xs sm:text-base font-bold text-slate-800">Namangan, UZB</p>
+                        <p className="text-[8px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-0.5">{t.locLabel}</p>
+                        <p className="text-xs sm:text-base font-bold text-slate-800">{t.locValue}</p>
                     </div>
                 </motion.div>
              </div>
@@ -76,12 +80,12 @@ const About: React.FC = () => {
             <FadeUp>
                 <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 text-[10px] font-bold tracking-widest text-sky-500 uppercase bg-sky-50 border border-sky-100 rounded-full">
                     <Sparkles size={12} />
-                    <span>Who I Am</span>
+                    <span>{t.badge}</span>
                 </div>
                 <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-6 sm:mb-10 leading-tight text-slate-900">
-                    Men haqimda <br />
+                    {t.title1} <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-purple-500 to-pink-500">
-                        qisqacha
+                        {t.title2}
                     </span>
                 </h2>
             </FadeUp>
@@ -89,14 +93,13 @@ const About: React.FC = () => {
             <div className="space-y-8 text-lg text-slate-500 leading-relaxed">
               <FadeUp delay={0.2}>
                   <p>
-                    Men <strong className="text-slate-800">Abdulhay Avazxanov</strong>man, LSL maktabining 8-B sinf o'quvchisiman. 
-                    Men zamonaviy, tezkor va kuchli raqamli mahsulotlar yaratishga qaratilgan kreativ veb-dizayner va veb-dasturchiman.
+                    {t.p1Pre}<strong className="text-slate-800">{t.p1Strong}</strong>{t.p1Post}
                   </p>
               </FadeUp>
               
               <FadeUp delay={0.3}>
                   <p>
-                    Mening maqsadim — texnologiyalar orqali insonlar hayotini osonlashtirish va yuqori darajadagi foydalanuvchi tajribasini (UX) taqdim etuvchi interfeyslar yaratish.
+                    {t.p2}
                   </p>
               </FadeUp>
               
@@ -110,9 +113,9 @@ const About: React.FC = () => {
                         <Cpu className="text-white" size={28} />
                       </div>
                       <div>
-                        <h4 className="text-slate-900 font-extrabold text-xl mb-2">Muhandislik Ustozim</h4>
+                        <h4 className="text-slate-900 font-extrabold text-xl mb-2">{t.mentorCardTitle}</h4>
                         <p className="text-slate-500 leading-relaxed">
-                          LSLdagi birinchi muhandislik ustozim <span className="text-sky-600 font-bold">Rasuljon Sharipov</span> bo'lganlar. Ular mening IT sohasidagi dastlabki qadamlarimda katta hissa qo'shganlar.
+                          {t.mentorDescPre}<span className="text-sky-600 font-bold">{t.mentorName}</span>{t.mentorDescPost}
                         </p>
                       </div>
                     </div>
@@ -124,11 +127,11 @@ const About: React.FC = () => {
                 <div className="mt-12 flex flex-wrap gap-4">
                    <div className="flex items-center gap-3 px-6 py-3 bg-white/60 backdrop-blur-md rounded-2xl border border-white/80 shadow-sm hover:shadow-md transition-all">
                        <div className="w-2 h-2 rounded-full bg-pink-500"></div>
-                       <span className="text-sm font-bold text-slate-700 tracking-wide uppercase">8-B Sinf</span>
+                       <span className="text-sm font-bold text-slate-700 tracking-wide uppercase">{t.tagRole}</span>
                    </div>
                    <div className="flex items-center gap-3 px-6 py-3 bg-white/60 backdrop-blur-md rounded-2xl border border-white/80 shadow-sm hover:shadow-md transition-all">
                        <div className="w-2 h-2 rounded-full bg-sky-500"></div>
-                       <span className="text-sm font-bold text-slate-700 tracking-wide uppercase">LSL School</span>
+                       <span className="text-sm font-bold text-slate-700 tracking-wide uppercase">{t.tagSchool}</span>
                    </div>
                 </div>
             </FadeUp>

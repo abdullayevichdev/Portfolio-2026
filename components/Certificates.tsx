@@ -1,10 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, ExternalLink, Sparkles, Download } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations/translations';
 import { FadeUp } from './Animations';
 import CertificateImg from '../assets/Frontend sertificate.jpg';
 
 const Certificates: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language].certificates;
+
   return (
     <section id="certificates" className="py-24 relative overflow-hidden bg-slate-50/50">
       <div className="container mx-auto px-6 relative z-10">
@@ -12,13 +17,13 @@ const Certificates: React.FC = () => {
           <FadeUp>
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 text-[10px] font-bold tracking-widest text-sky-500 uppercase bg-sky-50 border border-sky-100 rounded-full">
               <Award size={12} />
-              <span>Achievements</span>
+              <span>{t.badge}</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight text-slate-900">
-              Mening <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-indigo-600">Sertifikatim</span>
+              {t.titlePre} <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-indigo-600">{t.titleGrad}</span>
             </h2>
             <p className="text-slate-500 text-lg">
-              Dasturlash sohasidagi bilim va ko'nikmalarimni tasdiqlovchi rasmiy sertifikat.
+              {t.subtitle}
             </p>
           </FadeUp>
         </div>
@@ -51,7 +56,7 @@ const Certificates: React.FC = () => {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     className="w-14 h-14 rounded-full bg-white text-slate-900 flex items-center justify-center shadow-2xl cursor-pointer"
-                    title="Yuklab olish"
+                    title={t.download}
                   >
                     <Download size={24} />
                   </motion.a>
@@ -60,7 +65,7 @@ const Certificates: React.FC = () => {
                     whileTap={{ scale: 0.9 }}
                     onClick={() => window.open(CertificateImg, '_blank')}
                     className="w-14 h-14 rounded-full bg-sky-500 text-white flex items-center justify-center shadow-2xl cursor-pointer"
-                    title="Kattalashtirish"
+                    title={t.zoom}
                   >
                     <ExternalLink size={24} />
                   </motion.button>
@@ -74,17 +79,17 @@ const Certificates: React.FC = () => {
                     <Award size={28} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900 leading-tight">Frontend Development</h3>
-                    <p className="text-slate-500 text-sm">Professional Kurs Bitiruvchisi</p>
+                    <h3 className="text-xl font-bold text-slate-900 leading-tight">{t.courseTitle}</h3>
+                    <p className="text-slate-500 text-sm">{t.courseSubtitle}</p>
                   </div>
                 </div>
 
                 <div className="flex gap-3">
                   <div className="px-4 py-2 rounded-xl bg-sky-100 text-sky-600 text-xs font-bold uppercase tracking-wider border border-sky-200">
-                    Verified
+                    {t.verified}
                   </div>
                   <div className="px-4 py-2 rounded-xl bg-indigo-100 text-indigo-600 text-xs font-bold uppercase tracking-wider border border-indigo-200">
-                    A+ Grade
+                    {t.grade}
                   </div>
                 </div>
               </div>

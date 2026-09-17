@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { ExternalLink, Eye, X, Globe, RefreshCw, MonitorPlay, AlertCircle } from 'lucide-react';
+import { ExternalLink, Eye, X, Globe, RefreshCw, MonitorPlay, AlertCircle, Sparkles } from 'lucide-react';
 import { Project } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations/translations';
 import { FadeUp, StaggerContainer, StaggerItem, TiltCard } from './Animations';
 
+import scanforgeImg from '../assets/ScanForge.jpg';
 import fortexImg from '../assets/Fortex Oil Corporate.jpg';
 import portfolioImg from '../assets/Mening Birinchi Portfoliom.png';
 import phoneMarketImg from "../assets/Telefon va Aksessuarlar Do'koni.jpeg";
@@ -18,129 +21,180 @@ import freelanceImg from '../assets/Freelance & Freelancer.png';
 
 const projects: Project[] = [
   {
+    id: 13,
+    title: 'ScanForge — QR Code Builder',
+    titleEn: 'ScanForge — QR Code Builder',
+    url: 'https://scanforge-abdulhay.vercel.app/',
+    category: 'Asboblar / Web App',
+    categoryEn: 'Tools / Web App',
+    status: 'live',
+    image: scanforgeImg,
+    description: 'Brauzerda yuqori sifatli va sozlanuvchi QR kodlar yaratuvchi zamonaviy veb-platforma. Apple uslubidagi glassmorphism dizayn, maxsus gradientlar va tezkor eksport.',
+    descriptionEn: 'A modern browser-based web application for creating beautiful, high-quality, customizable QR codes. Features Apple-inspired glass design, custom gradients, and instant export.',
+    tech: ['React', 'TypeScript', 'Tailwind', 'Canvas', 'Vite']
+  },
+  {
     id: 8,
     title: 'Fortex Oil Corporate',
+    titleEn: 'Fortex Oil Corporate',
     url: 'https://fortex-oil-sayt.vercel.app/',
     category: 'Biznes',
+    categoryEn: 'Business',
     status: 'live',
     image: fortexImg,
     description: 'Neft va gaz sanoati uchun ishlab chiqilgan zamonaviy va informativ korporativ veb-sayt.',
+    descriptionEn: 'A modern and informative corporate website engineered for the oil and gas industry.',
     tech: ['React', 'Tailwind', 'Animation']
   },
   {
     id: 1,
     title: 'Mening Birinchi Portfoliom',
+    titleEn: 'My First Portfolio',
     url: 'https://abdullayevichdev.github.io/Portfolio/',
     category: 'Shaxsiy',
+    categoryEn: 'Personal',
     status: 'live',
     image: portfolioImg,
     description: 'HTML va CSS yordamida yaratilgan ilk shaxsiy veb-sayt. Oddiy, ammo samarali dizayn.',
+    descriptionEn: 'My first personal website built using pure HTML & CSS. Simple yet effective design.',
     tech: ['HTML', 'CSS']
   },
   {
     id: 2,
     title: 'Telefon va Aksessuarlar Do\'koni',
+    titleEn: 'Phone & Accessories Store',
     url: 'https://abdullayevichdev.github.io/Abdulhay-Online-Market/',
     category: 'E-Commerce',
+    categoryEn: 'E-Commerce',
     status: 'live',
     image: phoneMarketImg, 
     description: 'Mobil qurilmalar va aksessuarlar sotuvi uchun moslashuvchan interfeysga ega onlayn do\'kon.',
+    descriptionEn: 'An e-commerce store with responsive UI for selling mobile devices and tech accessories.',
     tech: ['JS', 'Bootstrap', 'E-com']
   },
   {
     id: 3,
     title: 'Wear Market - Kiyim Do\'koni',
+    titleEn: 'Wear Market - Clothing Store',
     url: 'https://abdullayevichdev.github.io/Wear-Market-new/',
     category: 'E-Commerce',
+    categoryEn: 'E-Commerce',
     status: 'live',
     image: wearMarketImg,
     description: 'Zamonaviy kiyim-kechaklar uchun minimalist dizayndagi onlayn savdo platformasi.',
+    descriptionEn: 'A minimalist online retail marketplace designed for trendy clothing and fashion.',
     tech: ['React', 'Tailwind', 'UI/UX']
   },
   {
     id: 4,
     title: 'Onlayn Avtosalon',
+    titleEn: 'Online Car Dealership',
     url: 'https://cars-salon-7cib.vercel.app/', 
     category: 'Biznes',
+    categoryEn: 'Business',
     status: 'live', 
     image: carsSalonImg,
     description: 'Premium avtomobillar savdosi va ijarasi uchun mo\'ljallangan boshqaruv paneli va vitrina.',
+    descriptionEn: 'Showcase storefront and management dashboard designed for luxury car sales and rentals.',
     tech: ['Vercel', 'React', 'Dashboard']
   },
   {
     id: 5,
     title: 'Maktab Boshqaruv Tizimi',
-    // Yangi Vercel link qo'yildi
+    titleEn: 'School Management System',
     url: 'https://students-grades.vercel.app/',
     category: 'Ta\'lim',
+    categoryEn: 'Education',
     status: 'live',
     image: schoolSysImg,
     description: 'O\'quvchilar davomati, baholar va jadvallarni nazorat qilish uchun maxsus CRM tizimi.',
+    descriptionEn: 'Custom educational CRM system for tracking student attendance, grades, and schedules.',
     tech: ['CRM', 'Analytics', 'Admin']
   },
   {
     id: 6,
     title: 'Abdulhay Reklama Platformasi',
+    titleEn: 'Abdulhay Advertising Platform',
     url: 'https://t.me/Robotexnika_LSL/358',
     category: 'Marketing',
+    categoryEn: 'Marketing',
     status: 'live',
     image: 'https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&q=80&w=800',
     description: 'Ijtimoiy tarmoqlar uchun raqamli marketing kampaniyasi va vizual materiallar.',
+    descriptionEn: 'Digital marketing campaign and visual assets developed for social media advertising.',
     tech: ['Telegram', 'Ads', 'Design']
   },
   {
     id: 7,
     title: 'Notepad Pro Web App',
+    titleEn: 'Notepad Pro Web App',
     url: 'https://abdullayevichdev.github.io/Notepad_Pro/',
     category: 'Tools',
+    categoryEn: 'Tools',
     status: 'live',
     image: notepadImg,
     description: 'Brauzerda ishlovchi, ma\'lumotlarni local storage da saqlovchi tezkor qaydlar ilovasi.',
+    descriptionEn: 'A fast browser-based note-taking app that stores and synchronizes data via LocalStorage.',
     tech: ['JavaScript', 'LocalStorage', 'PWA']
   },
   {
     id: 9,
     title: 'Tahqiq Platform',
+    titleEn: 'Tahqiq Platform',
     url: 'https://tahqiqofficial.vercel.app/',
     category: 'Platforma',
+    categoryEn: 'Platform',
     status: 'live',
     image: tahqiqImg,
     description: 'Zamonaviy tadqiqotlar va professional faoliyat uchun maxsus ishlab chiqilgan platforma.',
+    descriptionEn: 'Specialized platform crafted for contemporary scientific research and professional projects.',
     tech: ['React', 'Tailwind', 'i18next']
   },
   {
     id: 10,
     title: 'Iqub Qurilish',
+    titleEn: 'Iqub Construction',
     url: 'https://iqub-eosin.vercel.app/',
     category: 'Biznes',
+    categoryEn: 'Business',
     status: 'live',
     image: iqubImg,
     description: 'Qurilish sanoati korxonalari uchun maxsus veb platforma.',
+    descriptionEn: 'Dedicated web portal tailored for construction industry enterprises and contractors.',
     tech: ['React', 'Tailwind', 'UI/UX']
   },
   {
     id: 11,
     title: 'Qulupnay.uz',
+    titleEn: 'Qulupnay.uz',
     url: 'https://qulupnay-uz.vercel.app/',
     category: 'E-Commerce',
+    categoryEn: 'E-Commerce',
     status: 'live',
     image: qulupnayImg,
     description: 'Shirinliklar tayyorlaydigan korxona uchun onlayn buyurtma platformasi.',
+    descriptionEn: 'Online ordering web shop engineered for a confectionery and pastry enterprise.',
     tech: ['React', 'E-Commerce', 'Vercel']
   },
   {
     id: 12,
     title: 'Freelance & Freelancer',
+    titleEn: 'Freelance & Freelancer',
     url: 'https://work-time-three.vercel.app/',
     category: 'Platforma',
+    categoryEn: 'Platform',
     status: 'live',
     image: freelanceImg,
     description: 'Frilanserlar va mijozlarni bog\'lovchi professional ishlash platformasi.',
+    descriptionEn: 'A collaborative freelance marketplace connecting independent talents with global clients.',
     tech: ['React', 'Dashboard', 'Firebase']
   }
 ];
 
 const Projects: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language].projects;
+
   const brokenProjectIds: number[] = [];
   const [simulationProject, setSimulationProject] = useState<Project | null>(null);
   const [selectedDetails, setSelectedDetails] = useState<Project | null>(null);
@@ -158,14 +212,17 @@ const Projects: React.FC = () => {
     setSelectedDetails(project);
   };
 
+  const getTitle = (p: Project) => (language === 'en' && p.titleEn ? p.titleEn : p.title);
+  const getDesc = (p: Project) => (language === 'en' && p.descriptionEn ? p.descriptionEn : p.description);
+  const getCat = (p: Project) => (language === 'en' && p.categoryEn ? p.categoryEn : p.category);
+
   return (
     <section id="projects" className="py-24 relative z-10">
-      
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <FadeUp>
-            <span className="text-sky-500 font-mono text-sm tracking-widest uppercase mb-2 block">Portfolio</span>
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-800">Mening Loyihalarim</h2>
+            <span className="text-sky-500 font-mono text-sm tracking-widest uppercase mb-2 block">{t.tag}</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-800">{t.title}</h2>
             <div className="h-1 w-24 bg-gradient-to-r from-sky-400 to-pink-400 mx-auto rounded-full"></div>
           </FadeUp>
         </div>
@@ -190,32 +247,33 @@ const Projects: React.FC = () => {
                         <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-colors z-10"></div>
                         <img
                             src={project.image}
-                            alt={project.title}
+                            alt={getTitle(project)}
                             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20">
-                            <span className="bg-white/50 backdrop-blur px-4 py-2 rounded-full text-slate-800 font-medium border border-white/80 flex items-center gap-2 shadow-lg">
-                                <Eye size={16} /> Ko'rish
+                            <span className="bg-white/70 backdrop-blur px-4 py-2 rounded-full text-slate-800 font-medium border border-white/80 flex items-center gap-2 shadow-lg">
+                                <Eye size={16} /> {t.viewAction}
                             </span>
                         </div>
                     </a>
 
-                    <div className="absolute top-4 right-4 z-20 bg-white/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium border border-white/50 text-slate-800 pointer-events-none shadow-sm">
-                      {project.category}
+                    <div className="absolute top-4 right-4 z-20 bg-white/70 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium border border-white/50 text-slate-800 pointer-events-none shadow-sm flex items-center gap-1.5">
+                      {project.id === 13 && <Sparkles size={12} className="text-amber-500 animate-pulse" />}
+                      <span>{getCat(project)}</span>
                     </div>
                   </div>
 
                   <div className="p-6 flex flex-col flex-grow relative">
                     <h3 className="text-xl font-bold text-slate-800 mb-2 group-hover:text-sky-600 transition-colors">
-                      {project.title}
+                      {getTitle(project)}
                     </h3>
                     <p className="text-slate-500 text-sm mb-4 line-clamp-2">
-                      {project.description}
+                      {getDesc(project)}
                     </p>
 
                     <div className="flex flex-wrap gap-2 mb-6">
-                        {project.tech?.map((t, i) => (
-                            <span key={i} className="text-[10px] uppercase text-sky-600 bg-sky-100/50 px-2 py-1 rounded border border-sky-300/50">{t}</span>
+                        {project.tech?.map((tItem, i) => (
+                            <span key={i} className="text-[10px] uppercase text-sky-600 bg-sky-100/50 px-2 py-1 rounded border border-sky-300/50">{tItem}</span>
                         ))}
                     </div>
                     
@@ -227,14 +285,14 @@ const Projects: React.FC = () => {
                         onClick={(e) => handleProjectClick(e, project)}
                         className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-sky-500 to-pink-500 hover:opacity-90 rounded-lg text-white font-bold transition-all shadow-lg shadow-sky-500/20 transform hover:-translate-y-1 cursor-pointer"
                       >
-                        Saytni Ochish <ExternalLink size={16} />
+                        {t.openSite} <ExternalLink size={16} />
                       </a>
                       <button
-                            onClick={(e) => handleDetailsClick(e, project)}
-                            className="px-3 py-3 bg-white/40 hover:bg-white/60 border border-white/60 rounded-lg text-slate-800 transition-all cursor-pointer shadow-sm"
-                            title="Batafsil ma'lumot"
-                          >
-                            <MonitorPlay size={20} />
+                        onClick={(e) => handleDetailsClick(e, project)}
+                        className="px-3 py-3 bg-white/40 hover:bg-white/60 border border-white/60 rounded-lg text-slate-800 transition-all cursor-pointer shadow-sm"
+                        title={t.details}
+                      >
+                        <MonitorPlay size={20} />
                       </button>
                     </div>
                   </div>
@@ -269,22 +327,30 @@ const Projects: React.FC = () => {
               </div>
 
               <div className="p-8 overflow-y-auto">
-                 <h3 className="text-2xl font-bold text-slate-800 mb-4">{selectedDetails.title}</h3>
+                 <h3 className="text-2xl font-bold text-slate-800 mb-4">{getTitle(selectedDetails)}</h3>
                  
-                 <h4 className="text-slate-800 font-semibold mb-2">Loyiha Haqida:</h4>
+                 <h4 className="text-slate-800 font-semibold mb-2">{t.modalAbout}</h4>
                  <p className="text-slate-500 leading-relaxed mb-6">
-                    {selectedDetails.description}
+                    {getDesc(selectedDetails)}
                  </p>
                  
-                 <div className="flex gap-2 mb-8">
-                    {selectedDetails.tech?.map((t, i) => (
-                        <span key={i} className="text-xs font-mono bg-sky-100/50 px-2 py-1 rounded text-sky-700 border border-sky-200">{t}</span>
+                 <div className="flex flex-wrap gap-2 mb-8">
+                    {selectedDetails.tech?.map((tItem, i) => (
+                        <span key={i} className="text-xs font-mono bg-sky-100/50 px-2 py-1 rounded text-sky-700 border border-sky-200">{tItem}</span>
                     ))}
                  </div>
 
                  <div className="flex justify-end gap-3">
-                    <button onClick={() => setSelectedDetails(null)} className="px-5 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-800 font-medium transition-colors">
-                        Yopish
+                    <a
+                      href={selectedDetails.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2 rounded-lg bg-gradient-to-r from-sky-500 to-pink-500 text-white font-medium transition-opacity hover:opacity-90 flex items-center gap-2"
+                    >
+                      {t.openSite} <ExternalLink size={16} />
+                    </a>
+                    <button onClick={() => setSelectedDetails(null)} className="px-5 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-800 font-medium transition-colors cursor-pointer">
+                      {t.modalClose}
                     </button>
                  </div>
               </div>
@@ -334,10 +400,10 @@ const Projects: React.FC = () => {
                       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[90%] md:w-auto bg-slate-900/90 text-white px-6 py-4 rounded-xl backdrop-blur-md border border-red-500/30 shadow-2xl flex flex-col items-center gap-2 animate-in fade-in slide-in-from-top-4 duration-700">
                           <div className="flex items-center gap-2 text-amber-400 font-bold">
                              <AlertCircle size={20} />
-                             <span>Demo Rejimi (Server javob bermayapti)</span>
+                             <span>{t.demoAlertTitle}</span>
                           </div>
                           <p className="text-sm text-gray-300 text-center max-w-md">
-                             Ushbu saytning Netlify serveri vaqtinchalik o'chirilgan. Saytning vizual ko'rinishi saqlab qolingan.
+                             {t.demoAlertDesc}
                           </p>
                       </div>
                   </div>
