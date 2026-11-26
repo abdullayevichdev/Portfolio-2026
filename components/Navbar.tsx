@@ -3,10 +3,12 @@ import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations/translations';
 import logo from '../assets/logo.jpg';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState('');
   const { language, setLanguage } = useLanguage();
   const t = translations[language].nav;
 
@@ -27,6 +29,23 @@ const Navbar: React.FC = () => {
     { name: t.skills, href: '#skills' },
     { name: t.contact, href: '#contact' },
   ];
+
+  useEffect(() => {
+    const ids = navLinks.map((l) => l.href.slice(1));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, [language]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -53,8 +72,8 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'glass-nav py-4 shadow-lg' : 'bg-transparent py-6'}`}>
-      <div className="container mx-auto px-6 flex justify-between items-center">
+    <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'pt-3' : 'pt-6'}`}>
+      <div className={`mx-auto flex justify-between items-center transition-all duration-500 ${scrolled ? 'glass-nav rounded-full max-w-6xl w-[calc(100%-1.5rem)] px-4 sm:px-6 py-2.5' : 'container px-6 py-2'}`}>
         <a 
           href="#" 
           onClick={handleLogoClick}
@@ -77,16 +96,23 @@ const Navbar: React.FC = () => {
         </a>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-7">
-          <div className="flex gap-7">
+        <div className="hidden xl:flex items-center gap-5">
+          <div className="flex gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-slate-600 hover:text-sky-500 transition-colors text-sm font-medium tracking-wide uppercase hover:underline decoration-sky-500 decoration-2 underline-offset-8 cursor-pointer select-none"
+                className={`relative px-3 py-2 rounded-full whitespace-nowrap text-[13px] font-semibold tracking-wide uppercase transition-colors cursor-pointer select-none ${active === link.href ? 'text-sky-700' : 'text-slate-600 hover:text-sky-500'}`}
               >
-                {link.name}
+                {active === link.href && (
+                  <motion.span
+                    layoutId="nav-active"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    className="absolute inset-0 rounded-full glass-pill shadow-[0_0_20px_rgba(56,189,248,0.35)]"
+                  />
+                )}
+                <span className="relative z-10">{link.name}</span>
               </a>
             ))}
           </div>
@@ -121,7 +147,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Actions: Language Switcher + Hamburger */}
-        <div className="flex lg:hidden items-center gap-3">
+        <div className="flex xl:hidden items-center gap-3">
           <div className="flex items-center bg-white/70 border border-slate-200/80 rounded-full p-0.5 shadow-sm backdrop-blur-md">
             <button
               type="button"
@@ -158,8 +184,15 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
       {isOpen && (
-        <div className="lg:hidden glass-nav absolute w-full left-0 top-full p-6 flex flex-col gap-4 border-t border-slate-200 animate-in slide-in-from-top-5 duration-200 shadow-2xl">
+        <motion.div
+          initial={{ opacity: 0, y: -12, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -12, scale: 0.97 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+          className="xl:hidden glass-nav absolute left-3 right-3 top-full mt-3 rounded-3xl p-6 flex flex-col gap-2"
+        >
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -170,8 +203,9 @@ const Navbar: React.FC = () => {
               {link.name}
             </a>
           ))}
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </nav>
   );
 };

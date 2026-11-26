@@ -7,7 +7,8 @@ export interface Project {
   url: string;
   category: string;
   categoryEn?: string;
-  image: string;
+  image?: string;
+  accent?: string;
   status: 'live' | 'maintenance' | 'preview';
   description?: string;
   descriptionEn?: string;

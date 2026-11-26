@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cpu, Sparkles, GraduationCap, MapPin, Code2 } from 'lucide-react';
+import { Sparkles, Code2, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations/translations';
@@ -30,6 +30,7 @@ const About: React.FC = () => {
                 <div className="absolute -inset-6 sm:-inset-12 bg-gradient-to-tr from-sky-400/20 via-pink-400/20 to-purple-400/20 rounded-[2rem] sm:rounded-[3rem] blur-[60px] sm:blur-[100px] opacity-50 group-hover:opacity-80 transition-opacity duration-700"></div>
                 
                 {/* Main Image Wrapper */}
+                <div className="glow-ring -inset-[3px] rounded-[2.7rem] sm:rounded-[3.7rem] opacity-80"></div>
                 <div className="relative glass-card rounded-[2.5rem] sm:rounded-[3.5rem] p-2.5 sm:p-3.5 border border-white/60 shadow-2xl overflow-hidden">
                     <div className="relative rounded-[2rem] sm:rounded-[3rem] overflow-hidden aspect-[4/5]">
                         <img 
@@ -47,10 +48,10 @@ const About: React.FC = () => {
                     initial={{ x: 30, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.5 }}
-                    className="absolute -right-4 sm:-right-8 top-8 sm:top-12 glass-card py-2.5 px-4 sm:py-4 sm:px-6 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-3 border border-white/80 shadow-2xl z-20"
+                    className="float-slow absolute -right-4 sm:-right-8 top-8 sm:top-12 glass-card py-2.5 px-4 sm:py-4 sm:px-6 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-3 border border-white/80 shadow-2xl z-20"
                 >
                     <div className="p-2 sm:p-2.5 bg-sky-100 rounded-lg sm:rounded-xl">
-                        <GraduationCap className="text-sky-500" size={18} />
+                        <Code2 className="text-sky-500" size={18} />
                     </div>
                     <div>
                         <p className="text-[8px] sm:text-[10px] uppercase font-bold text-slate-400 tracking-wider mb-0.5">{t.eduLabel}</p>
@@ -62,7 +63,7 @@ const About: React.FC = () => {
                     initial={{ x: -30, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.7 }}
-                    className="absolute -left-4 sm:-left-8 bottom-8 sm:bottom-12 glass-card py-2.5 px-4 sm:py-4 sm:px-6 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-3 border border-white/80 shadow-2xl z-20"
+                    className="float-slower absolute -left-4 sm:-left-8 bottom-8 sm:bottom-12 glass-card py-2.5 px-4 sm:py-4 sm:px-6 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-3 border border-white/80 shadow-2xl z-20"
                 >
                     <div className="p-2 sm:p-2.5 bg-pink-100 rounded-lg sm:rounded-xl">
                         <MapPin className="text-pink-500" size={18} />
@@ -78,13 +79,13 @@ const About: React.FC = () => {
           {/* Text Column */}
           <div className="relative mt-12 lg:mt-0">
             <FadeUp>
-                <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 text-[10px] font-bold tracking-widest text-sky-500 uppercase bg-sky-50 border border-sky-100 rounded-full">
+                <div className="glass-pill inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-[11px] font-bold tracking-widest text-sky-600 uppercase rounded-full">
                     <Sparkles size={12} />
                     <span>{t.badge}</span>
                 </div>
                 <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-6 sm:mb-10 leading-tight text-slate-900">
                     {t.title1} <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-purple-500 to-pink-500">
+                    <span className="text-shimmer">
                         {t.title2}
                     </span>
                 </h2>
@@ -102,35 +103,16 @@ const About: React.FC = () => {
                     {t.p2}
                   </p>
               </FadeUp>
-              
-              <FadeUp delay={0.4}>
-                  <div className="glass-card p-8 rounded-[2rem] border border-white/60 shadow-xl relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <Cpu size={80} />
-                    </div>
-                    <div className="flex items-start gap-5 relative z-10">
-                      <div className="p-3 bg-gradient-to-br from-sky-400 to-sky-600 rounded-2xl shadow-lg shadow-sky-200">
-                        <Cpu className="text-white" size={28} />
-                      </div>
-                      <div>
-                        <h4 className="text-slate-900 font-extrabold text-xl mb-2">{t.mentorCardTitle}</h4>
-                        <p className="text-slate-500 leading-relaxed">
-                          {t.mentorDescPre}<span className="text-sky-600 font-bold">{t.mentorName}</span>{t.mentorDescPost}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-              </FadeUp>
             </div>
 
             <FadeUp delay={0.6}>
                 <div className="mt-12 flex flex-wrap gap-4">
-                   <div className="flex items-center gap-3 px-6 py-3 bg-white/60 backdrop-blur-md rounded-2xl border border-white/80 shadow-sm hover:shadow-md transition-all">
-                       <div className="w-2 h-2 rounded-full bg-pink-500"></div>
+                   <div className="glass-pill flex items-center gap-3 px-6 py-3 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(56,189,248,0.4)]">
+                       <div className="w-2 h-2 rounded-full bg-pink-500 shadow-[0_0_10px_rgba(236,72,153,0.9)] animate-pulse"></div>
                        <span className="text-sm font-bold text-slate-700 tracking-wide uppercase">{t.tagRole}</span>
                    </div>
-                   <div className="flex items-center gap-3 px-6 py-3 bg-white/60 backdrop-blur-md rounded-2xl border border-white/80 shadow-sm hover:shadow-md transition-all">
-                       <div className="w-2 h-2 rounded-full bg-sky-500"></div>
+                   <div className="glass-pill flex items-center gap-3 px-6 py-3 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(56,189,248,0.4)]">
+                       <div className="w-2 h-2 rounded-full bg-sky-500 shadow-[0_0_10px_rgba(14,165,233,0.9)] animate-pulse"></div>
                        <span className="text-sm font-bold text-slate-700 tracking-wide uppercase">{t.tagSchool}</span>
                    </div>
                 </div>

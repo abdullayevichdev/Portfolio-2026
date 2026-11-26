@@ -4,7 +4,7 @@ import { Project } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations/translations';
-import { FadeUp, StaggerContainer, StaggerItem, TiltCard } from './Animations';
+import { SectionHeading, StaggerContainer, StaggerItem, TiltCard } from './Animations';
 
 import scanforgeImg from '../assets/ScanForge.jpg';
 import fortexImg from '../assets/Fortex Oil Corporate.jpg';
@@ -20,6 +20,32 @@ import qulupnayImg from '../assets/Qulupnay.uz Shrinliklar tayyorlaydigan korhon
 import freelanceImg from '../assets/Freelance & Freelancer.png';
 
 const projects: Project[] = [
+  {
+    id: 14,
+    title: 'ScanForge.uz',
+    titleEn: 'ScanForge.uz',
+    url: 'https://www.scanforge.uz/',
+    category: 'Yangi / Platforma',
+    categoryEn: 'New / Platform',
+    status: 'live',
+    accent: 'from-sky-400 via-indigo-500 to-violet-600',
+    description: "ScanForge'ning o'z domenidagi rasmiy platformasi — QR kodlarni tez, chiroyli va professional darajada yaratish uchun zamonaviy veb-xizmat.",
+    descriptionEn: 'The official ScanForge platform on its own domain — a modern web service for creating beautiful, professional QR codes in seconds.',
+    tech: ['React', 'TypeScript', 'Tailwind', 'UI/UX']
+  },
+  {
+    id: 15,
+    title: 'Tashrifim.uz',
+    titleEn: 'Tashrifim.uz',
+    url: 'https://tashrifim.uz/',
+    category: 'Yangi / Platforma',
+    categoryEn: 'New / Platform',
+    status: 'live',
+    accent: 'from-pink-400 via-fuchsia-500 to-violet-600',
+    description: "Tashrifim.uz — foydalanuvchilar uchun qulay va zamonaviy interfeysga ega o'zbek veb-platformasi.",
+    descriptionEn: 'Tashrifim.uz — an Uzbek web platform with a clean, modern and user-friendly interface.',
+    tech: ['React', 'Tailwind', 'UI/UX']
+  },
   {
     id: 13,
     title: 'ScanForge — QR Code Builder',
@@ -191,6 +217,30 @@ const projects: Project[] = [
   }
 ];
 
+// Rasmi yo'q loyihalar uchun animatsion "brauzer" muqova
+const GeneratedCover: React.FC<{ project: Project }> = ({ project }) => {
+  const domain = project.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+  return (
+    <div className={`relative w-full h-full bg-gradient-to-br ${project.accent || 'from-sky-400 via-violet-500 to-pink-500'} overflow-hidden`}>
+      <div className="absolute -top-10 -left-10 w-48 h-48 bg-white/30 blur-2xl animate-blob" style={{ borderRadius: '42% 58% 61% 39% / 45% 39% 61% 55%' }}></div>
+      <div className="absolute -bottom-12 -right-8 w-56 h-56 bg-white/20 blur-2xl animate-blob" style={{ animationDelay: '-3s', borderRadius: '68% 32% 38% 62% / 55% 64% 36% 45%' }}></div>
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.12)_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+      <div className="absolute inset-x-6 top-6 bottom-0 rounded-t-2xl bg-white/20 backdrop-blur-xl border border-white/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-transform duration-700 group-hover:-translate-y-2">
+        <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/30">
+          <span className="w-2.5 h-2.5 rounded-full bg-white/80"></span>
+          <span className="w-2.5 h-2.5 rounded-full bg-white/60"></span>
+          <span className="w-2.5 h-2.5 rounded-full bg-white/40"></span>
+          <span className="ml-3 flex-1 h-5 rounded-full bg-white/30 text-[10px] text-white/90 font-medium flex items-center px-3 truncate">{domain}</span>
+        </div>
+        <div className="flex flex-col items-center justify-center h-[calc(100%-44px)] text-white">
+          <Globe size={30} className="mb-2 drop-shadow-[0_0_12px_rgba(255,255,255,0.9)] animate-[spin_12s_linear_infinite]" />
+          <span className="text-2xl font-black tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.25)]">{project.title}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Projects: React.FC = () => {
   const { language } = useLanguage();
   const t = translations[language].projects;
@@ -219,24 +269,18 @@ const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-24 relative z-10">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
-          <FadeUp>
-            <span className="text-sky-500 font-mono text-sm tracking-widest uppercase mb-2 block">{t.tag}</span>
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-800">{t.title}</h2>
-            <div className="h-1 w-24 bg-gradient-to-r from-sky-400 to-pink-400 mx-auto rounded-full"></div>
-          </FadeUp>
-        </div>
+        <SectionHeading tag={t.tag} title={t.title} />
 
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
             <StaggerItem key={project.id} className="h-full">
               <TiltCard className="h-full">
                 <div
-                  className="group glass-card rounded-[2rem] overflow-hidden hover:shadow-[0_20px_50px_rgba(56,189,248,0.2)] hover:border-sky-400/50 hover:-translate-y-2 transition-all duration-500 flex flex-col h-full relative"
+                  className="group glass-card rounded-[2rem] overflow-hidden p-2 flex flex-col h-full relative"
                 >
                   {/* Liquid Hover Blob */}
                   <div className="absolute -inset-full bg-gradient-to-tr from-sky-500/30 to-pink-500/30 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none group-hover:animate-blob"></div>
-                  <div className="relative h-52 overflow-hidden">
+                  <div className="relative h-52 overflow-hidden rounded-[1.6rem]">
                     <a 
                       href={project.url} 
                       target={brokenProjectIds.includes(project.id) ? undefined : "_blank"}
@@ -245,11 +289,16 @@ const Projects: React.FC = () => {
                       className="block w-full h-full cursor-pointer"
                     >
                         <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-colors z-10"></div>
-                        <img
-                            src={project.image}
-                            alt={getTitle(project)}
-                            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                        />
+                        {project.image ? (
+                          <img
+                              src={project.image}
+                              alt={getTitle(project)}
+                              loading="lazy"
+                              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                          />
+                        ) : (
+                          <GeneratedCover project={project} />
+                        )}
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20">
                             <span className="bg-white/70 backdrop-blur px-4 py-2 rounded-full text-slate-800 font-medium border border-white/80 flex items-center gap-2 shadow-lg">
                                 <Eye size={16} /> {t.viewAction}
@@ -258,7 +307,7 @@ const Projects: React.FC = () => {
                     </a>
 
                     <div className="absolute top-4 right-4 z-20 bg-white/70 backdrop-blur-md px-3 py-1 rounded-full text-xs font-medium border border-white/50 text-slate-800 pointer-events-none shadow-sm flex items-center gap-1.5">
-                      {project.id === 13 && <Sparkles size={12} className="text-amber-500 animate-pulse" />}
+                      {(project.id === 13 || !project.image) && <Sparkles size={12} className="text-amber-500 animate-pulse" />}
                       <span>{getCat(project)}</span>
                     </div>
                   </div>
@@ -273,7 +322,7 @@ const Projects: React.FC = () => {
 
                     <div className="flex flex-wrap gap-2 mb-6">
                         {project.tech?.map((tItem, i) => (
-                            <span key={i} className="text-[10px] uppercase text-sky-600 bg-sky-100/50 px-2 py-1 rounded border border-sky-300/50">{tItem}</span>
+                            <span key={i} className="text-[10px] font-semibold uppercase tracking-wider text-sky-700 bg-white/50 px-2.5 py-1 rounded-full border border-white/80 shadow-[inset_0_1px_0_#fff]">{tItem}</span>
                         ))}
                     </div>
                     
@@ -283,13 +332,13 @@ const Projects: React.FC = () => {
                         target={brokenProjectIds.includes(project.id) ? undefined : "_blank"}
                         rel="noopener noreferrer"
                         onClick={(e) => handleProjectClick(e, project)}
-                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-sky-500 to-pink-500 hover:opacity-90 rounded-lg text-white font-bold transition-all shadow-lg shadow-sky-500/20 transform hover:-translate-y-1 cursor-pointer"
+                        className="btn-glow flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-white font-bold transition-transform hover:-translate-y-1 active:scale-95 cursor-pointer"
                       >
                         {t.openSite} <ExternalLink size={16} />
                       </a>
                       <button
                         onClick={(e) => handleDetailsClick(e, project)}
-                        className="px-3 py-3 bg-white/40 hover:bg-white/60 border border-white/60 rounded-lg text-slate-800 transition-all cursor-pointer shadow-sm"
+                        className="glass-pill px-3 py-3 rounded-xl text-slate-700 transition-all cursor-pointer hover:text-sky-600 hover:shadow-[0_0_22px_rgba(56,189,248,0.5)]"
                         title={t.details}
                       >
                         <MonitorPlay size={20} />
@@ -312,17 +361,22 @@ const Projects: React.FC = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedDetails(null)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-slate-900/50 backdrop-blur-md"
             />
             
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              initial={{ opacity: 0, scale: 0.85, y: 40, filter: 'blur(10px)' }}
+              animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, scale: 0.9, y: 20, filter: 'blur(10px)' }}
+              transition={{ type: 'spring', stiffness: 220, damping: 24 }}
               className="relative w-full max-w-2xl glass-card rounded-[2rem] overflow-hidden shadow-2xl z-10 flex flex-col max-h-[90vh]"
             >
               <div className="relative h-64 shrink-0">
-                 <img src={selectedDetails.image} className="w-full h-full object-cover" alt="Preview" />
+                 {selectedDetails.image ? (
+                   <img src={selectedDetails.image} className="w-full h-full object-cover" alt="Preview" />
+                 ) : (
+                   <GeneratedCover project={selectedDetails} />
+                 )}
                  <div className="absolute inset-0 bg-gradient-to-t from-white/90 to-transparent"></div>
               </div>
 
