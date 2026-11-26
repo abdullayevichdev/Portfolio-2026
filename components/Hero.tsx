@@ -3,7 +3,8 @@ import { ArrowRight, ChevronDown, Sparkles, Instagram, Send, MessageCircle, Gith
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations/translations';
-import { FadeUp } from './Animations';
+import { FadeUp, Magnetic } from './Animations';
+import { SOCIALS } from '../data/socials';
 import IAM from '../assets/IAM.jpg';
 
 const Hero: React.FC = () => {
@@ -23,17 +24,22 @@ const Hero: React.FC = () => {
         {/* Left Column */}
         <div className="text-left relative z-10 pt-10 lg:pt-0">
           <FadeUp delay={0.1}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 text-xs font-bold tracking-widest text-sky-600 uppercase bg-sky-100/50 rounded-full border border-sky-300/50 backdrop-blur-md">
-              <Sparkles size={14} />
+            <div className="glass-pill inline-flex items-center gap-2 px-4 py-2 mb-8 text-xs font-bold tracking-widest text-sky-600 uppercase rounded-full">
+              <Sparkles size={14} className="animate-pulse" />
               <span>{t.badge}</span>
             </div>
           </FadeUp>
           
           <h1 className="text-5xl md:text-[5rem] font-extrabold mb-8 leading-[1.1] tracking-tight text-slate-900">
             <FadeUp delay={0.2}><span className="block mb-2">{t.greeting}</span></FadeUp>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-purple-500 to-pink-500 pb-2 pr-2">
+            <motion.span
+              initial={{ opacity: 0, y: 30, filter: 'blur(12px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="text-shimmer inline-block pb-2 pr-2"
+            >
               {t.name}
-            </span>
+            </motion.span>
           </h1>
           
           <FadeUp delay={0.6}>
@@ -44,22 +50,26 @@ const Hero: React.FC = () => {
           
           <FadeUp delay={0.8}>
             <div className="flex flex-wrap gap-5 mb-16">
-              <motion.a 
-                href="#projects" 
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 bg-gradient-to-r from-sky-400 to-pink-400 rounded-2xl text-white font-bold transition-all shadow-lg shadow-sky-400/25 flex items-center justify-center gap-3 cursor-pointer"
-              >
-                {t.viewProjects} <ArrowRight size={20} />
-              </motion.a>
-              <motion.button 
-                onClick={scrollToContact}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 bg-white/60 border border-slate-200 rounded-2xl text-slate-800 font-bold hover:bg-white transition-all shadow-sm backdrop-blur-md cursor-pointer"
-              >
-                {t.contactBtn}
-              </motion.button>
+              <Magnetic>
+                <motion.a 
+                  href="#projects" 
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="btn-glow group px-8 py-4 rounded-2xl text-white font-bold flex items-center justify-center gap-3 cursor-pointer"
+                >
+                  {t.viewProjects} <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+                </motion.a>
+              </Magnetic>
+              <Magnetic>
+                <motion.button 
+                  onClick={scrollToContact}
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="glass-pill px-8 py-4 rounded-2xl text-slate-800 font-bold transition-all cursor-pointer hover:shadow-[0_0_30px_rgba(56,189,248,0.45)]"
+                >
+                  {t.contactBtn}
+                </motion.button>
+              </Magnetic>
             </div>
           </FadeUp>
 
@@ -69,18 +79,23 @@ const Hero: React.FC = () => {
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">{t.followMe}</span>
               <div className="flex gap-4">
                 {[
-                  { icon: <Instagram size={20} />, href: "https://instagram.com/avazxanov_701" },
-                  { icon: <Send size={20} />, href: "https://t.me/Abdullayevich_dev" },
-                  { icon: <MessageCircle size={20} />, href: "https://t.me/frontenddevuz" },
-                  { icon: <Github size={20} />, href: "https://github.com/abdullayevichdev" }
+                  { icon: <Instagram size={20} />, href: SOCIALS.instagram, label: 'Instagram', glow: 'hover:text-pink-500 hover:shadow-[0_0_24px_rgba(236,72,153,0.55)]' },
+                  { icon: <Send size={20} />, href: SOCIALS.telegram, label: 'Telegram', glow: 'hover:text-sky-500 hover:shadow-[0_0_24px_rgba(14,165,233,0.55)]' },
+                  { icon: <MessageCircle size={20} />, href: SOCIALS.telegramChannel, label: 'Telegram Channel', glow: 'hover:text-violet-500 hover:shadow-[0_0_24px_rgba(139,92,246,0.55)]' },
+                  { icon: <Github size={20} />, href: SOCIALS.github, label: 'GitHub', glow: 'hover:text-slate-900 hover:shadow-[0_0_24px_rgba(15,23,42,0.35)]' }
                 ].map((social, i) => (
                   <motion.a 
                     key={i}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ y: -3, color: '#0ea5e9' }}
-                    className="w-11 h-11 rounded-full glass-card flex items-center justify-center text-slate-400 transition-colors border border-white/60"
+                    aria-label={social.label}
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.1 + i * 0.1, type: 'spring', stiffness: 260, damping: 16 }}
+                    whileHover={{ y: -5, scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className={`w-12 h-12 rounded-full glass-pill flex items-center justify-center text-slate-500 transition-[color,box-shadow] duration-300 ${social.glow}`}
                   >
                     {social.icon}
                   </motion.a>
@@ -99,7 +114,10 @@ const Hero: React.FC = () => {
         >
           <div className="relative w-full aspect-[4/5] max-w-[320px] sm:max-w-[400px] lg:max-w-[500px]">
              {/* Complex Background Glow */}
-             <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-tr from-sky-400/20 via-purple-500/20 to-pink-500/20 rounded-full blur-[60px] sm:blur-[80px] opacity-60 animate-pulse-slow"></div>
+             <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-tr from-sky-400/40 via-purple-500/30 to-pink-500/40 rounded-full blur-[60px] sm:blur-[80px] opacity-70 animate-pulse-slow"></div>
+             {/* Rotating glow ring */}
+             <div className="glow-ring -inset-[6px] sm:-inset-[10px] rounded-[2.8rem] sm:rounded-[4rem] blur-[1px]"></div>
+             <div className="glow-ring -inset-[6px] sm:-inset-[10px] rounded-[2.8rem] sm:rounded-[4rem] blur-xl opacity-70"></div>
              
              {/* Main Image Frame */}
              <div className="relative h-full w-full rounded-[2.5rem] sm:rounded-[3.5rem] overflow-hidden border-4 sm:border-8 border-white/40 shadow-2xl bg-white/20 backdrop-blur-md">
@@ -138,7 +156,7 @@ const Hero: React.FC = () => {
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 1 }}
-                className="absolute top-1/4 -left-6 sm:-left-12 z-30 glass-card pl-3 pr-4 sm:pl-4 sm:pr-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-3 shadow-xl border border-white/60"
+                className="float-slow absolute top-1/4 -left-6 sm:-left-12 z-30 glass-card pl-3 pr-4 sm:pl-4 sm:pr-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-3 shadow-xl border border-white/60"
              >
                 <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500 shadow-[0_0_12px_rgba(34,197,94,0.6)] animate-pulse"></div>
                 <div className="flex flex-col">
@@ -151,7 +169,7 @@ const Hero: React.FC = () => {
                 initial={{ x: 20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 1.3 }}
-                className="absolute top-1/2 -right-4 sm:-right-8 z-30 bg-slate-900/80 backdrop-blur-xl pl-3 pr-4 sm:pl-4 sm:pr-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-3 shadow-xl border border-white/10"
+                className="float-slower absolute top-1/2 -right-4 sm:-right-8 z-30 bg-slate-900/80 backdrop-blur-xl pl-3 pr-4 sm:pl-4 sm:pr-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-3 shadow-xl border border-white/10"
              >
                 <div className="p-1.5 sm:p-2 bg-sky-500/20 rounded-lg sm:rounded-xl">
                     <Code size={16} className="text-sky-400 sm:w-5 sm:h-5" />

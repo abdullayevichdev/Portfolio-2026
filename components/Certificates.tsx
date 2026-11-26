@@ -11,16 +11,16 @@ const Certificates: React.FC = () => {
   const t = translations[language].certificates;
 
   return (
-    <section id="certificates" className="py-24 relative overflow-hidden bg-slate-50/50">
+    <section id="certificates" className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <FadeUp>
-            <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 text-[10px] font-bold tracking-widest text-sky-500 uppercase bg-sky-50 border border-sky-100 rounded-full">
+            <div className="glass-pill inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-[11px] font-bold tracking-widest text-sky-600 uppercase rounded-full">
               <Award size={12} />
               <span>{t.badge}</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight text-slate-900">
-              {t.titlePre} <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-indigo-600">{t.titleGrad}</span>
+              {t.titlePre} <span className="text-shimmer">{t.titleGrad}</span>
             </h2>
             <p className="text-slate-500 text-lg">
               {t.subtitle}
@@ -40,7 +40,8 @@ const Certificates: React.FC = () => {
             <div className="absolute -inset-10 bg-gradient-to-tr from-sky-400/20 via-indigo-500/20 to-purple-500/20 rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
             {/* Certificate Frame */}
-            <div className="relative glass-card rounded-[2rem] sm:rounded-[3rem] p-4 sm:p-6 border border-white/60 shadow-2xl overflow-hidden bg-white/40 backdrop-blur-xl">
+            <div className="glow-ring -inset-[3px] rounded-[2.2rem] sm:rounded-[3.2rem] opacity-70"></div>
+            <div className="relative glass-card rounded-[2rem] sm:rounded-[3rem] p-4 sm:p-6 overflow-hidden">
               <div className="relative rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden shadow-inner border border-slate-100 bg-slate-50">
                 <img
                   src={CertificateImg}
